@@ -21,7 +21,13 @@
     writeCounter = str => counter.textContent = str;
 
     async function getSensors() {
-        const response = await fetch('/sensors');
+        
+        let pathname = location.pathname;
+        let partName = pathname.substring(0, pathname.lastIndexOf('/'));
+
+        console.log(partName);
+
+        const response = await fetch(partName + '/sensors');
         const myJson = await response.json();
         writeCounter(myJson.counter);
     }
